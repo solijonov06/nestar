@@ -10,7 +10,7 @@
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
-     "start:dev:batch": "nest start nestar-batch --watch",
+    "start:dev:batch": "nest start nestar-batch --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/apps/nestar-api/main",
     "start:prod:batch": "node dist/apps/nestar-batch/main",
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
+    "@nestjs/config": "^4.0.2",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
     "@types/express": "^5.0.0",
