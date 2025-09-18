@@ -16,6 +16,10 @@ export class MemberInput{
     @Field(() => String)
     memberPassword: string
 
+    @IsNotEmpty()
+    @Field(() => String)
+    memberPhone: string
+
     @IsOptional()
     @Field(() => MemberType, {nullable: true})
     memberType?: MemberType;
@@ -25,4 +29,19 @@ export class MemberInput{
     memberAuthType?: MemberAuthType;
 
 
+}
+
+@InputType()
+export class LoginInput{
+    @IsNotEmpty()
+    @Length(3,12)
+    @Field(() => String)
+    memberNick: string
+
+     @IsNotEmpty()
+    @Length(5,12)
+    @Field(() => String)
+    memberPassword: string
+
+ 
 }
