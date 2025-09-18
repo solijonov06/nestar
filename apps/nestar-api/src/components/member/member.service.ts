@@ -17,7 +17,7 @@ export class MemberService {
         //authentication
         return result
         }catch(err){
-            console.log('Error, signup',err);
+            console.log('Error, signup',err.message);
             throw new BadRequestException(err)
         }
     }
