@@ -10,7 +10,7 @@ const MemberSchema = new Schema ({
 
      MemberStatus: {
         type: String,
-        enum: MemberAuthType,
+        enum: MemberStatus,
         default: MemberStatus.ACTIVE
     },
 
@@ -26,7 +26,7 @@ const MemberSchema = new Schema ({
         required: true
     },
 
-      memberNIck: {
+      memberNick: {
         type: String,
         index: {unique: true, sparse: true},
         required: true

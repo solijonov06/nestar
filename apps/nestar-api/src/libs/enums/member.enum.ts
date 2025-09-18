@@ -18,7 +18,7 @@ registerEnumType(MemberStatus, {
     name: 'MemberStatus',
 });
 
-export enum MemberAuthType{
+export enum MemberAuthType {
     PHONE = "PHONE",
     EMAIL = "EMAIL",
     TELEGRAM = "TELEGRAM"
