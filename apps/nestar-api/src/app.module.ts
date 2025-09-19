@@ -20,7 +20,7 @@ import { T } from './libs/types/common';
       formatError: (error: T) =>{
         console.log('error',error);
         const graphQLFormattedError = {
-          code: error?.extension.code,
+          code: error?.extension?.code,
           message: error?.extensions?.exception?.response?.message
           ||error?.extensions?.response?.message || error?.message
         };
@@ -29,7 +29,7 @@ import { T } from './libs/types/common';
       }
     }),
     ComponentsModule,
-    DatabaseModule
+    DatabaseModule  
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver],
