@@ -2,24 +2,50 @@
 ; Yuqoridagi misolda, function kiritilgan raq
 amlarni orqasiga o'girib (reverse) qilib qaytarmoqda.*/
 
+/**TASK ZN:
 
+Shunday function yozing, uni array va number parametri bo'lsin.
+Function'ning vazifasi ikkinchi parametr'da berilgan raqam, birinchi
+array parametr'ning indeksi bo'yicha hisoblanib, shu indeksgacha bo'lgan
+raqamlarni indeksdan tashqarida bo'lgan raqamlar bilan o'rnini
+almashtirib qaytarsin.
 
+MASALAN: rotateArray([1, 2, 3, 4, 5, 6], 3); return [5, 6, 1, 2, 3, 4]; */
 
-function reverseInteger(num: number): number {
-  // 1. Raqamni stringga o‘tkazamiz
-  const str = num.toString();
+function rotateArray<T>(arr: T[], index: number): T[] {
+  if (index < 0 || index >= arr.length) {
+    throw new Error("Index out of range");
+  }
 
-  // 2. Stringni teskari qilib qo‘shamiz
-  const reversedStr = str.split("").reverse().join("");
+  // Split the array into two parts
+  const left = arr.slice(0, index + 1);  // up to the given index
+  const right = arr.slice(index + 1);    // after the given index
 
-  // 3. Yana son (number) ga o‘tkazamiz
-  return parseInt(reversedStr, 10);
+  // Swap their positions
+  return [...right, ...left];
 }
 
-// Test
-console.log(reverseInteger(123456789)); // 987654321
-console.log(reverseInteger(1000));      // 1
-console.log(reverseInteger(9870));      // 789
+// Example usage:
+console.log(rotateArray([1, 2, 3, 4, 5, 6], 3)); 
+// Output: [5, 6, 1, 2, 3, 4]
+
+
+
+// function reverseInteger(num: number): number {
+//   // 1. Raqamni stringga o‘tkazamiz
+//   const str = num.toString();
+
+//   // 2. Stringni teskari qilib qo‘shamiz
+//   const reversedStr = str.split("").reverse().join("");
+
+//   // 3. Yana son (number) ga o‘tkazamiz
+//   return parseInt(reversedStr, 10);
+// }
+
+// // Test
+// console.log(reverseInteger(123456789)); // 987654321
+// console.log(reverseInteger(1000));      // 1
+// console.log(reverseInteger(9870));      // 789
 
 
 
