@@ -10,6 +10,7 @@ import { DatabaseModule } from './database/database.module';
 import { T } from './libs/types/common';
 
 
+
 @Module({
   imports: [ConfigModule.forRoot(),
     GraphQLModule.forRoot({
@@ -35,3 +36,4 @@ import { T } from './libs/types/common';
   providers: [AppService, AppResolver],
 })
 export class AppModule {}
+ 
