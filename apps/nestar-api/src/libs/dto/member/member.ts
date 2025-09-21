@@ -11,10 +11,10 @@ _id: ObjectId;
 @Field (()=> MemberType)
 memberType: MemberType;
 
-@Field(()=> MemberStatus)
+@Field(()=> MemberStatus, {nullable: true})
 memberStatus: MemberStatus;
 
-@Field(()=> MemberAuthType)
+@Field(()=> MemberAuthType, {nullable: true})
 memberAuthType: MemberAuthType;
 
 @Field(()=> String)
@@ -73,9 +73,12 @@ memberBlocks: number;
 @Field(()=> Date, {nullable: true})
 deletedAt: Date;
 
-@Field(()=> Date)
+@Field(()=> Date, {nullable: true})
 createdAt: Date;
 
-@Field(()=> Date)
+@Field(()=> Date, {nullable: true})
 updatedAt: Date;
+
+@Field(()=>String, {nullable: true} )
+accessToken: string;
 }

@@ -11,7 +11,7 @@ export class MemberInput{
     @Field(() => String)
     memberNick: string
 
-     @IsNotEmpty()
+    @IsNotEmpty()
     @Length(5,12)
     @Field(() => String)
     memberPassword: string

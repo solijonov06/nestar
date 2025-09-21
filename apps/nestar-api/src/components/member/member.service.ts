@@ -19,11 +19,11 @@ export class MemberService {
         const result = await this.memberModel.create(input)
         //authentication
         result.accessToken  = await this.authService.createToken(result);
-        console.log('accesToken', accessToken);
+        console.log('accessToken', result.accessToken);
         return result
         }catch(err){
             console.log('Error, signup',err.message);
-            throw new BadRequestException(err)
+            throw new BadRequestException(Message.USED_NICK_PHONE)
         }
     }
 
@@ -37,14 +37,12 @@ export class MemberService {
             throw new InternalServerErrorException(Message.NO_MEMBER_NICK);
         }else if (response.memberStatus === MemberStatus.BLOCK){
         throw new InternalServerErrorException(Message.BLOCKED_USER);
-
-        console.log("response", response)
-        const isMatch = await this.authService.comparePasswords(input.memberPassword,response.memberPassword);
-        if(!isMatch) throw new InternalServerErrorException(Message.WRONG_PASSWORD)
-        
-        
-        response.accessToken = await this.authService.createToken(response)
         }
+
+        const isMatch = await this.authService.comparePasswords
+        (input.memberPassword, response.memberPassword)
+        if(!isMatch) throw new InternalServerErrorException(Message.WRONG_PASSWORD)
+        response.accessToken = await this.authService.createToken(response)
 
         return response
     }
@@ -56,4 +54,13 @@ export class MemberService {
      public async getMember(): Promise<string> {
         return 'getMember excuted'
     }
+
+     public async getAllMembersByAdmin(): Promise<string> {
+        return 'getAllMembersByAdmin excuted'
+    }
+
+     public async updateMemberByAdmin(): Promise<string> {
+        return 'updateMemberByAdmin'
+    }
 }
+

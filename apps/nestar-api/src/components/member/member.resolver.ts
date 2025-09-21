@@ -25,7 +25,7 @@ export class MemberResolver {
   @Mutation(()=> Member)
     public async login(@Args ('input')input : LoginInput): Promise<Member>{
          try{
-             console.log("Mutation: login");
+        console.log("Mutation: login");
         return this.memberService.login(input);
 
 
@@ -34,7 +34,7 @@ export class MemberResolver {
           throw new InternalServerErrorException(err)
         }
     }
-
+//authentication
   @Mutation(()=> String)
     public async updateMember(): Promise<string>{
         console.log("Mutation: updateMember");
@@ -46,6 +46,19 @@ export class MemberResolver {
         console.log("Mutation: getMember");
         return this.memberService.getMember();
     }
+
+    /**ADMIN */
+    //authorization: Admin
+    @Mutation(()=> String)
+    public async getAllMembersByAdmin(): Promise<string>{
+       return this.memberService.getAllMembersByAdmin();
+    }
   
+     //authorization: Admin
+    @Mutation(()=> String)
+    public async updateMemberByAdmin(): Promise<string>{
+        console.log("Mutation: updateMemberByAdmin");
+     return this.memberService.updateMemberByAdmin();
+    }
   }
 
