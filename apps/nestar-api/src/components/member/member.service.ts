@@ -61,7 +61,7 @@ export class MemberService {
         return result
     }
 
-     public async getMember(targetId: ObjectId): Promise<Member> {
+     public async getMember(memberId: ObjectId, targetId: ObjectId): Promise<Member> {
         const search: T = {
             _id: targetId,
             memberStatus: {
@@ -69,6 +69,11 @@ export class MemberService {
             }};
         const targetMember = await this.memberModel.findOne(search).exec();
         if(!targetMember) throw new InternalServerErrorException(Message.NO_DATA_IS_FOUND)
+
+        if(!memberId){
+            //record view
+            //increase memberView
+        }
         return targetMember
     }
 
