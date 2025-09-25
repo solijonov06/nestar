@@ -1,3 +1,22 @@
+/**TASK-ZO: Shunday function yozing, u parametrdagi string ichidagi
+ *  qavslar miqdori balansda ekanligini aniqlasin. Ya'ni ochish("(") va yopish(")") 
+ * qavslar soni bir xil bolishi kerak. 
+ * MASALAN: areParenthesesBalanced("string()ichida(qavslar)soni()balansda") return true. */
+
+export function areParenthesesBalanced(s: string): boolean {
+  let depth = 0;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === '(') depth++;
+    else if (s[i] === ')') {
+      depth--;
+      if (depth < 0) return false;
+    }
+  }
+  return depth === 0;
+}
+
+
+
 /*TASK ZM: Shunday function yozing, va bu function parametr sifatida raqamlarni qabul qilsin. Bu function qabul qilingan raqamlarni orqasiga o'girib qaytarsin MASALAN: reverseInteger(123456789); return 987654321
 ; Yuqoridagi misolda, function kiritilgan raq
 amlarni orqasiga o'girib (reverse) qilib qaytarmoqda.*/
@@ -12,22 +31,22 @@ almashtirib qaytarsin.
 
 MASALAN: rotateArray([1, 2, 3, 4, 5, 6], 3); return [5, 6, 1, 2, 3, 4]; */
 
-function rotateArray<T>(arr: T[], index: number): T[] {
-  if (index < 0 || index >= arr.length) {
-    throw new Error("Index out of range");
-  }
+// function rotateArray<T>(arr: T[], index: number): T[] {
+//   if (index < 0 || index >= arr.length) {
+//     throw new Error("Index out of range");
+//   }
 
-  // Split the array into two parts
-  const left = arr.slice(0, index + 1);  // up to the given index
-  const right = arr.slice(index + 1);    // after the given index
+//   // Split the array into two parts
+//   const left = arr.slice(0, index + 1);  // up to the given index
+//   const right = arr.slice(index + 1);    // after the given index
 
-  // Swap their positions
-  return [...right, ...left];
-}
+//   // Swap their positions
+//   return [...right, ...left];
+// }
 
-// Example usage:
-console.log(rotateArray([1, 2, 3, 4, 5, 6], 3)); 
-// Output: [5, 6, 1, 2, 3, 4]
+// // Example usage:
+// console.log(rotateArray([1, 2, 3, 4, 5, 6], 3)); 
+// // Output: [5, 6, 1, 2, 3, 4]
 
 
 
