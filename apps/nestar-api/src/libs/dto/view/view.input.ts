@@ -14,7 +14,7 @@ memberId: ObjectId;
 
 @IsNotEmpty()
 @Field(()=> String)
-viewId: ObjectId;
+viewRefId: ObjectId;
 
 @IsNotEmpty()
 @Field(()=> ViewGroup)
