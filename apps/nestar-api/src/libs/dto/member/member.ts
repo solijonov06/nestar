@@ -10,11 +10,11 @@ export class Member {
 	@Field(() => MemberType)
 	memberType: MemberType;
 
-	@Field(() => MemberStatus)
-	memberStatus: MemberStatus;
+	@Field(() => MemberStatus , { nullable: true })
+	memberStatus?: MemberStatus;
 
-	@Field(() => MemberAuthType)
-	memberAuthType: MemberAuthType;
+	@Field(() => MemberAuthType, {nullable: true})
+	memberAuthType?: MemberAuthType;
 
 	@Field(() => String)
 	memberPhone: string;
@@ -72,11 +72,11 @@ export class Member {
 	@Field(() => Date, { nullable: true })
 	deletedAt?: Date;
 
-	@Field(() => Date)
-	createdAt: Date;
+	@Field(() => Date, {nullable: true})
+	createdAt?: Date;
 
-	@Field(() => Date)
-	updatedAt: Date;
+	@Field(() => Date, {nullable: true})
+	updatedAt?: Date;
 
 	@Field(() => String, { nullable: true })
 	accessToken?: string;
