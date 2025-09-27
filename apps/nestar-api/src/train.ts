@@ -1,19 +1,43 @@
+/**TASK-ZP:
+
+Shunday function yozing, u parametridagi s
+tring ichidagi raqam va sonlarni sonini sanasin.
+MASALAN: countNumberAndLetters(“string152%\¥”) return {number:3, letter:6} */
+
+function countNumberAndLetters(input: string): { number: number; letter: number } {
+  // \p{N} = any kind of numeric character, \p{L} = any kind of letter
+  // requires ES2018+ / Unicode property escapes support
+  const numberMatches = input.match(/\p{N}/gu);
+  const letterMatches = input.match(/\p{L}/gu);
+
+  return {
+    number: numberMatches ? numberMatches.length : 0,
+    letter: letterMatches ? letterMatches.length : 0,
+  };
+}
+
+// Example
+console.log(countNumberAndLetters("string152%\\¥")); // { number: 3, letter: 6 }
+
+
+
+
 /**TASK-ZO: Shunday function yozing, u parametrdagi string ichidagi
  *  qavslar miqdori balansda ekanligini aniqlasin. Ya'ni ochish("(") va yopish(")") 
  * qavslar soni bir xil bolishi kerak. 
  * MASALAN: areParenthesesBalanced("string()ichida(qavslar)soni()balansda") return true. */
 
-export function areParenthesesBalanced(s: string): boolean {
-  let depth = 0;
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] === '(') depth++;
-    else if (s[i] === ')') {
-      depth--;
-      if (depth < 0) return false;
-    }
-  }
-  return depth === 0;
-}
+// export function areParenthesesBalanced(s: string): boolean {
+//   let depth = 0;
+//   for (let i = 0; i < s.length; i++) {
+//     if (s[i] === '(') depth++;
+//     else if (s[i] === ')') {
+//       depth--;
+//       if (depth < 0) return false;
+//     }
+//   }
+//   return depth === 0;
+// }
 
 
 
