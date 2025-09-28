@@ -52,12 +52,14 @@ export class MemberResolver {
 	@UseGuards(AuthGuard)
 	@Mutation(() => Member)
 	public async updateMember(
-		@Args("input") input: MemberUpdate,
+		@Args('input') input: MemberUpdate,
 		@AuthMember('_id') memberId: ObjectId
 	): Promise<Member> {
 		console.log('Mutation: updateMember');
 		delete input._id;
+		console.log('executed')
 		return await this.memberService.updateMember(memberId, input);
+		
 	}
 
 	@UseGuards(WithoutGuard)

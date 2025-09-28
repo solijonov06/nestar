@@ -2,10 +2,11 @@ import { MemberAuthType, MemberStatus, MemberType } from '../../enums/member.enu
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { ObjectId } from 'mongoose';
 import { PropertyLocation, PropertyStatus, PropertyType } from '../../enums/property.enum';
+import {Member} from '../../dto/member/member'
 
 @ObjectType()
 export class Property {
-    @Field(() => String)
+    @Field(()=> String)
     _id: ObjectId;
 
     @Field(()=> PropertyType)
@@ -84,4 +85,9 @@ export class Property {
 
     @Field(() => Date)
     updatedAt: Date;
+
+
+    //from aggregation
+    @Field(()=> Member, {nullable: true})
+    memberData?: Member;
 }

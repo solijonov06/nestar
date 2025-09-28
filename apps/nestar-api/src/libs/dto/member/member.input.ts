@@ -21,11 +21,11 @@ export class MemberInput {
 	memberPhone: string;
 
 	@IsOptional()
-	@Field(() => MemberType, { nullable: true })
+	@Field(() => MemberType, {nullable: true})
 	memberType?: MemberType;
 
 	@IsOptional()
-	@Field(() => MemberAuthType, { nullable: true })
+	@Field(() => MemberAuthType, {nullable: true})
 	memberAuthType?: MemberAuthType;
 }
 

@@ -46,26 +46,31 @@ export class MemberService {
 			throw new InternalServerErrorException(Message.WRONG_PASSWORD);
 		}
 		response.accessToken = await this.authService.createToken(response);
-
+		console.log("response.accessToken:",response.accessToken)
 		return response;
 	}
 
-	public async updateMember(memberId: ObjectId, input: MemberUpdate): Promise<Member> {
-		const result: Member = await this.memberModel
-			.findOneAndUpdate(
-				{
-					_id: memberId,
-					memberStatus: MemberStatus.ACTIVE,
-				},
-				input,
-				{ new: true },
-			)
-			.exec();
-		if (!result) throw new InternalServerErrorException(Message.UPDATE_FAILED);
+public async updateMember(memberId: ObjectId, input: MemberUpdate): Promise<Member> {
+      const result: Member = await this.memberModel.findOneAndUpdate(
+		
+        {
+          _id: memberId,
+          memberStatus: MemberStatus.ACTIVE
+        },
+        input,
+        {
+          new: true
+        }
+      )
+      .exec();
+	  	console.log('executedservice')
 
-		result.accessToken = await this.authService.createToken(result);
-		return result;
-	}
+
+      if (!result) throw new InternalServerErrorException(Message.UPLOAD_FAILED);
+       result.accessToken = await this.authService.createToken(result);
+
+        return result;
+    }
 
 	public async getMember(memberId: ObjectId, targetId: ObjectId): Promise<Member> {
 		const search: T = {
