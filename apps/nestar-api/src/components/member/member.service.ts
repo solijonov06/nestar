@@ -121,7 +121,7 @@ public async updateMember(memberId: ObjectId, input: MemberUpdate): Promise<Memb
 	public async getAllMembersByAdmin(input: MembersInquiry): Promise<Members> {
 		const { memberStatus, memberType, text } = input.search
 		const match: T = {}
-		const sort: T = { [input?.sort ?? "createdAt"]: input.direction ?? Direction.DESC }
+		const sort: T = { [input?.sort ?? "createdAt"]: input?.direction ?? Direction.DESC }
 
 		if (MemberStatus) match.MemberStatus = memberStatus
 		if (MemberType) match.memberType = memberType
