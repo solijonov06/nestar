@@ -103,7 +103,7 @@ export class PropertyService {
                     return result;
                 }
 
-                public async getProperties(memberId: ObjectId, input: PropertiesInquiry): Promise<Properties> {
+         public async getProperties(memberId: ObjectId, input: PropertiesInquiry): Promise<Properties> {
                         const match: T = { PropertyStatus: PropertyStatus.ACTIVE}
                         const sort: T = { [input?.sort ?? "createdAt"]: input?.direction ?? Direction.DESC }
 
@@ -131,7 +131,7 @@ export class PropertyService {
                         return result[0];
                     }
 
-    private shapeMatchQuery(match: T, input:PropertiesInquiry ): void{
+         private shapeMatchQuery(match: T, input:PropertiesInquiry ): void{
         const{
             memberId,
             locationList,
@@ -164,7 +164,7 @@ export class PropertyService {
     }
 
 
-    public async getAgentProperties(memberId: ObjectId, input: AgentPropertiesInquiry): Promise<Properties> {
+         public async getAgentProperties(memberId: ObjectId, input: AgentPropertiesInquiry): Promise<Properties> {
             const { propertyStatus } = input.search
             if(propertyStatus === PropertyStatus.DELETE) throw new BadRequestException(Message.NOT_ALLOWED_REQUEST)
             const match: T = {
@@ -216,6 +216,39 @@ export class PropertyService {
                 return result[0];
             }
                 
+
+                public async updatePropertyByAdmin(input: PropertyUpdate): Promise<Property> {
+                 let {propertyStatus, soldAt, deletedAt} = input;
+               const search :T = {
+                _id: input._id,
+                propertyStatus: PropertyStatus.ACTIVE
+               };
+
+               if(propertyStatus === PropertyStatus.SOLD) soldAt = moment().toDate()
+                else if (propertyStatus === PropertyStatus.DELETE) deletedAt = moment().toDate()
+            
+
+                const result = await this.propertyModel.findOneAndUpdate(   
+                    search,
+                    input,
+                    {
+                      new: true
+                    }
+                  )
+                  .exec();
+                    console.log('executedservice')
+                   if (!result) throw new InternalServerErrorException(Message.UPLOAD_FAILED);
+            
+                 
+            if (soldAt || deletedAt){
+                await this.memberServie.memberStatsEditor({
+                    _id: result.memberId,
+                    targetKey: "memberProperties",
+                    modifier: -1
+                })
+            }
+                    return result;
+                }
             
     }
 
