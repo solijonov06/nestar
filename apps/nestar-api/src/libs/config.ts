@@ -30,7 +30,7 @@ export const lookupMember = {
 		from: 'members',
 		localField: 'memberId',
 		foreignField: '_id',
-		as: 'memberData',
+		as: 'memberData', 
 	}
 }
 

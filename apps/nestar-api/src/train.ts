@@ -1,23 +1,42 @@
+/**TASK ZQ:
+
+Shunday function yozing, u parametridagi array ichida 2 marta qaytarilgan sonlarni alohida araryda qaytarsin.
+MASALAN: findDuplicates([1,2,3,4,5,4,3,4]) return [3, 4] */
+
+function findDuplicates(arr: number[]): number[] {
+  return arr.filter((item, index) => arr.indexOf(item) !== index)
+            .filter((item, index, self) => self.indexOf(item) === index);
+}
+
+// Test
+console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4])); // [3, 4]
+console.log(findDuplicates([10, 20, 30, 20, 40, 10, 50])); // [10, 20]
+
+
+
+
+
+
 /**TASK-ZP:
 
 Shunday function yozing, u parametridagi s
 tring ichidagi raqam va sonlarni sonini sanasin.
 MASALAN: countNumberAndLetters(“string152%\¥”) return {number:3, letter:6} */
 
-function countNumberAndLetters(input: string): { number: number; letter: number } {
-  // \p{N} = any kind of numeric character, \p{L} = any kind of letter
-  // requires ES2018+ / Unicode property escapes support
-  const numberMatches = input.match(/\p{N}/gu);
-  const letterMatches = input.match(/\p{L}/gu);
+// function countNumberAndLetters(input: string): { number: number; letter: number } {
+//   // \p{N} = any kind of numeric character, \p{L} = any kind of letter
+//   // requires ES2018+ / Unicode property escapes support
+//   const numberMatches = input.match(/\p{N}/gu);
+//   const letterMatches = input.match(/\p{L}/gu);
 
-  return {
-    number: numberMatches ? numberMatches.length : 0,
-    letter: letterMatches ? letterMatches.length : 0,
-  };
-}
+//   return {
+//     number: numberMatches ? numberMatches.length : 0,
+//     letter: letterMatches ? letterMatches.length : 0,
+//   };
+// }
 
-// Example
-console.log(countNumberAndLetters("string152%\\¥")); // { number: 3, letter: 6 }
+// // Example
+// console.log(countNumberAndLetters("string152%\\¥")); // { number: 3, letter: 6 }
 
 
 
