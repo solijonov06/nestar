@@ -1,26 +1,53 @@
+function singleNumber(nums: number[]): number {
+  const countMap = new Map<number, number>();
+
+  for (const num of nums) {
+    countMap.set(num, (countMap.get(num) || 0) + 1);
+  }
+
+  for (const [num, count] of countMap) {
+    if (count === 1) return num;
+  }
+
+  throw new Error("No single number found");
+}
+
+// Test
+console.log(singleNumber([4, 2, 1, 2, 1])); // 4
+
+
+
+/*TASK ZS:
+
+Shunday function yozing, bu function parametrdagi array ichida
+bir marotaba takrorlangan element'ni qaytarsin
+
+MASALAN: singleNumber([4, 2, 1, 2, 1]); return 4;*/
+
+
 /**TASK-ZP:
 
 Shunday function yozing, u parametridagi string ichidagi raqam va sonlarni sonini sanasin.
 MASALAN: countNumberAndLetters(“string152%\¥”) return {number:3, letter:6} */
 
 
-function countNumberAndLetters(input: string): { number: number; letter: number } {
-  let number = 0;
-  let letter = 0;
+// function countNumberAndLetters(input: string): { number: number; letter: number } {
+//   let number = 0;
+//   let letter = 0;
 
-  for (const char of input) {
-    if (/[0-9]/.test(char)) {
-      number++;
-    } else if (/[a-zA-Z]/.test(char)) {
-      letter++;
-    }
-  }
+//   for (const char of input) {
+//     if (/[0-9]/.test(char)) {
+//       number++;
+//     } else if (/[a-zA-Z]/.test(char)) {
+//       letter++;
+//     }
+//   }
 
-  return { number, letter };
-}
+//   return { number, letter };
+// }
 
-// Test
-console.log(countNumberAndLetters("string152%¥")); 
+// // Test
+// console.log(countNumberAndLetters("string152%¥")); 
 // 👉 { number: 3, letter: 6 }
 
 

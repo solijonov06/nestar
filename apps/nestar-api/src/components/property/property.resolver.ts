@@ -88,7 +88,7 @@ export class PropertyResolver {
             public async getAllPropertiesByAdmin(@Args("input") input: AllPropertiesInquiry,
         @AuthMember('_id') memberId: ObjectId ): Promise<Properties> {
                 console.log('Query: getAllPropertiesByAdmin');
-                return await this.propertyService.getAllPropertiesByAdmin(input);
+                return await this.propertyService.getAllPropertiesByAdmin(memberId, input);
             }
 
             @Roles(MemberType.ADMIN)
