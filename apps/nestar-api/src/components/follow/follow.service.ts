@@ -6,7 +6,7 @@ import { MemberService } from '../member/member.service';
 import { AuthService } from '../auth/auth.service';
 import { Direction, Message } from '../../libs/enums/common.enum';
 import { FollowInquiry } from '../../libs/dto/follow/follow.input';
-import { lookupAuthMemberLiked, lookupFollowerData, lookupFollowingData } from '../../libs/config';
+import { lookupAuthMemberFollowed, lookupAuthMemberLiked, lookupFollowerData, lookupFollowingData } from '../../libs/config';
 import { T } from '../../libs/types/common';
 import { internalExecuteOperation } from '@apollo/server/dist/esm/ApolloServer';
 
@@ -79,6 +79,7 @@ export class FollowService {
                      { $skip: (page - 1) * limit},
                      { $limit: limit },
                          lookupAuthMemberLiked(memberId, '$followingId'),
+                        lookupAuthMemberFollowed({followerId: memberId, followingId: '$followingId'}),
                      //meLiked
                      //meFollowed
                      lookupFollowingData,
@@ -112,7 +113,7 @@ export class FollowService {
                      { $skip: (page - 1) * limit},
                      { $limit: limit },
                            lookupAuthMemberLiked(memberId, '$followerId'),
-                     //meLiked,
+                           lookupAuthMemberFollowed({followerId: memberId, followingId: '$followerId'}),
                      //meFollowed
                      lookupFollowerData,
                      { $unwind: '$followerData'},
