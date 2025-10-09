@@ -1,19 +1,53 @@
-function singleNumber(nums: number[]): number {
-  const countMap = new Map<number, number>();
+/**TASK-ZT:
 
-  for (const num of nums) {
-    countMap.set(num, (countMap.get(num) || 0) + 1);
+Shunday function yozing, u parametridagi string ichida 1 martadan ortiq qaytarilmagan birinchi harf indeksini qaytarsin.
+MASALAN: firstUniqueCharIndex(“stamp”) return 0 */
+  // 1. Har bir belgini sanaymiz
+  // 2. Birinchi unikal belgi indeksini topamiz
+  // Agar yo'q bo‘lsa -1 qaytaradi
+
+function firstUniqueCharIndex(str: string): number {
+  const charCount: Record<string, number> = {};
+
+
+  for (const char of str) {
+    charCount[char] = (charCount[char] || 0) + 1;
   }
 
-  for (const [num, count] of countMap) {
-    if (count === 1) return num;
+  
+  for (let i = 0; i < str.length; i++) {
+    if (charCount[str[i]] === 1) {
+      return i;
+    }
   }
 
-  throw new Error("No single number found");
+  
+  return -1;
 }
 
-// Test
-console.log(singleNumber([4, 2, 1, 2, 1])); // 4
+
+console.log(firstUniqueCharIndex("stamp")); // 0 ('s')
+console.log(firstUniqueCharIndex("success")); // 1 ('u')
+console.log(firstUniqueCharIndex("aabb")); // -1
+
+
+
+// function singleNumber(nums: number[]): number {
+//   const countMap = new Map<number, number>();
+
+//   for (const num of nums) {
+//     countMap.set(num, (countMap.get(num) || 0) + 1);
+//   }
+
+//   for (const [num, count] of countMap) {
+//     if (count === 1) return num;
+//   }
+
+//   throw new Error("No single number found");
+// }
+
+// // Test
+// console.log(singleNumber([4, 2, 1, 2, 1])); // 4
 
 
 
