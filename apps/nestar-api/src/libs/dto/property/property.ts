@@ -102,7 +102,7 @@ export class Property {
 @ObjectType()
 export class Properties{
     @Field(()=>[Property])
-    list: Property
+    list: Property[];
 
 
     @Field(()=>[TotalCounter],{nullable:true})
