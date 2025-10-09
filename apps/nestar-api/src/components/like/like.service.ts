@@ -58,13 +58,24 @@ export class LikeService {
             {$unwind: '$favoriteProperty'},
             {
                 $facet: {
-                    list: [{ $skip: (page - 1) * limit }, { $limit: limit }, lookupFavorite],
+                    list: [{ $skip: (page - 1) * limit },
+                         { $limit: limit },
+                         lookupFavorite,
+                         {$unwind: '$favoriteProperty.memberData'
+
+                         },],
+                         metaCounter: [ { $count: 'total' } ],
                 }
             }
         ])
         .exec();
         console.log('data:', data);
 
-        return null;
+        const result: Properties = { list: [], metaCounter: data[0].metaCounter}
+        
+        result.list = data[0].list.map((ele)=> ele.favoriteProperty);
+
+        console.log('result:', result);
+        return result;
     }
 }
