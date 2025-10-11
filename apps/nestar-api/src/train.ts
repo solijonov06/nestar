@@ -1,3 +1,34 @@
+/**TASK-ZU:
+
+Shunday function yozing, u parametridagi array ichida takrorlanmagan raqamlar yig'indisini qaytarsin.
+MASALAN: sumOfUnique([1,2,3,2]) return 4 */
+
+function sumOfUnique(nums: number[]): number {
+  const countMap: Record<number, number> = {};
+
+  // Har bir sonni sanaymiz
+  for (const num of nums) {
+    countMap[num] = (countMap[num] || 0) + 1;
+  }
+
+  // Faqat 1 marta uchraganlarni yig‘amiz
+  let sum = 0;
+  for (const num in countMap) {
+    if (countMap[num] === 1) {
+      sum += Number(num);
+    }
+  }
+
+  return sum;
+}
+
+// Test
+console.log(sumOfUnique([1, 2, 3, 2])); // 4 (1 + 3)
+console.log(sumOfUnique([1, 1, 1, 1])); // 0
+console.log(sumOfUnique([1, 2, 3, 4, 5])); // 15
+
+
+
 /**TASK-ZT:
 
 Shunday function yozing, u parametridagi string ichida 1 martadan ortiq qaytarilmagan birinchi harf indeksini qaytarsin.
@@ -6,29 +37,29 @@ MASALAN: firstUniqueCharIndex(“stamp”) return 0 */
   // 2. Birinchi unikal belgi indeksini topamiz
   // Agar yo'q bo‘lsa -1 qaytaradi
 
-function firstUniqueCharIndex(str: string): number {
-  const charCount: Record<string, number> = {};
+// function firstUniqueCharIndex(str: string): number {
+//   const charCount: Record<string, number> = {};
 
 
-  for (const char of str) {
-    charCount[char] = (charCount[char] || 0) + 1;
-  }
-
-  
-  for (let i = 0; i < str.length; i++) {
-    if (charCount[str[i]] === 1) {
-      return i;
-    }
-  }
+//   for (const char of str) {
+//     charCount[char] = (charCount[char] || 0) + 1;
+//   }
 
   
-  return -1;
-}
+//   for (let i = 0; i < str.length; i++) {
+//     if (charCount[str[i]] === 1) {
+//       return i;
+//     }
+//   }
+
+  
+//   return -1;
+// }
 
 
-console.log(firstUniqueCharIndex("stamp")); // 0 ('s')
-console.log(firstUniqueCharIndex("success")); // 1 ('u')
-console.log(firstUniqueCharIndex("aabb")); // -1
+// console.log(firstUniqueCharIndex("stamp")); // 0 ('s')
+// console.log(firstUniqueCharIndex("success")); // 1 ('u')
+// console.log(firstUniqueCharIndex("aabb")); // -1
 
 
 
