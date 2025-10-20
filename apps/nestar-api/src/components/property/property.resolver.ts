@@ -89,7 +89,7 @@ export class PropertyResolver {
         public async getAgentProperties(@Args("input") input: AgentPropertiesInquiry,
          @AuthMember('_id') memberId: ObjectId
         ): Promise<Properties> {
-            console.log('Query: getProperties');
+            console.log('Query: getAgentProperties');
             console.log("memberId", memberId)
             return await this.propertyService.getAgentProperties(memberId, input);
         }
