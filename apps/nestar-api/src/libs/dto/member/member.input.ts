@@ -45,35 +45,37 @@ export class LoginInput {
 
 @InputType()
 class AISearch {
-	@IsOptional()
-	@Field(() => String, { nullable: true })
-	text?: string
+  @IsOptional()
+  @Field(() => String, { nullable: true })
+  text?: string;
 }
+
 @InputType()
 export class AgentsInquiry {
-	@IsNotEmpty()
-	@Min(1)
-	@Field(() => Int)
-	page: number
+  @IsNotEmpty()
+  @Min(1)
+  @Field(() => Int)
+  page: number;
 
-	@IsNotEmpty()
-	@Min(1)
-	@Field(() => Int)
-	limit: number
+  @IsNotEmpty()
+  @Min(1)
+  @Field(() => Int)
+  limit: number;
 
-	@IsOptional()
-	@IsIn(availableAgentsSorts)
-	@Field(() => String, { nullable: true })
-	sort?: string
+  @IsOptional()
+  @IsIn(availableAgentsSorts)
+  @Field(() => String, { nullable: true })
+  sort?: string;
 
-	@IsOptional()
-	@Field(() => Direction, { nullable: true })
-	direction?: Direction
+  @IsOptional()
+  @Field(() => Direction, { nullable: true })
+  direction?: Direction;
 
-	@IsNotEmpty()
-	@Field(() => AISearch)
-	search: AISearch;
+  @IsOptional()
+  @Field(() => AISearch, { nullable: true })  // <-- IMPORTANT!!!
+  search?: AISearch;
 }
+
 
 @InputType()
 class MISearch {
